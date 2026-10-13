@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "HireMate AI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000" },
+    { "key": "token", "value": "" },
+    { "key": "resume_id", "value": "" },
+    { "key": "jd_id", "value": "" },
+    { "key": "analysis_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/api/auth/signup",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"secret123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{base_url}}/api/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"jane@example.com\",\n  \"password\": \"secret123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Upload Resume",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/resumes/upload",
+        "body": {
+          "mode": "formdata",
+          "formdata": [{ "key": "file", "type": "file", "src": "" }]
+        }
+      }
+    },
+    {
+      "name": "List Resumes",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/resumes/"
+      }
+    },
+    {
+      "name": "Delete Resume",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/resumes/{{resume_id}}"
+      }
+    },
+    {
+      "name": "Create Job Description",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/api/job-descriptions/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Backend Developer\",\n  \"description_text\": \"We need Python, FastAPI, PostgreSQL, Docker, AWS experience.\"\n}"
+        }
+      }
+    },
+    {
+      "name": "List Job Descriptions",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/job-descriptions/"
+      }
+    },
+    {
+      "name": "Analyze Resume",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{base_url}}/api/analysis/",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"resume_id\": {{resume_id}},\n  \"job_description_id\": {{jd_id}}\n}"
+        }
+      }
+    },
+    {
+      "name": "Get Analysis History",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/analysis/history"
+      }
+    },
+    {
+      "name": "Get Single Analysis Result",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/analysis/{{analysis_id}}"
+      }
+    },
+    {
+      "name": "Download PDF Report",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": "{{base_url}}/api/report/{{analysis_id}}"
+      }
+    }
+  ]
+}

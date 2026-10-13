@@ -1,0 +1,29 @@
+# ---------- Secrets / environment (NEVER commit) ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Python ----------
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---------- Node / frontend build ----------
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+
+# ---------- User-uploaded resumes (personal data) ----------
+backend/uploads/
+
+# ---------- OS / editor ----------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

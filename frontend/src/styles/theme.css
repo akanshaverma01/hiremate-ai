@@ -1,0 +1,213 @@
+/* ============================================================
+   theme.css - HireMate AI purple/navy theme (compat layer)
+
+   Why this file exists: many pages (Upload, Analysis Result, Skill Gap,
+   History, Profile, Copilot, Cover Letter, Recruiter Feedback) were written
+   with light-only Tailwind classes (bg-white, text-slate-800, bg-violet-50...)
+   and have no dark: variants. Instead of hand-editing ~400 class names, this
+   file re-maps those exact classes when <html data-theme="dark"> is set.
+
+   Load order matters: main.jsx imports this BEFORE tailwind.css so that the
+   real dark: variants in Sidebar/Topbar/Dashboard win any specificity tie.
+   ============================================================ */
+
+/* ---------- Page background: soft purple glow like the mockups ---------- */
+[data-theme="dark"] body {
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(124, 58, 237, 0.18), transparent 60%),
+    radial-gradient(700px 400px at 0% 100%, rgba(88, 28, 235, 0.12), transparent 60%),
+    var(--bg-color);
+  background-attachment: fixed;
+}
+
+/* ---------- Scrollbars ---------- */
+[data-theme="dark"] * { scrollbar-color: #3a3670 transparent; scrollbar-width: thin; }
+[data-theme="dark"] ::-webkit-scrollbar { width: 10px; height: 10px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #3a3670; border-radius: 999px; border: 2px solid transparent; background-clip: content-box; }
+
+/* ---------- Native dropdown options ---------- */
+[data-theme="dark"] select option { background: #14132f; color: #ece9ff; }
+
+/* ---------- Text selection ---------- */
+::selection { background: rgba(139, 92, 246, 0.45); color: #fff; }
+
+/* ---------- Sidebar / cards get a faint purple edge glow ---------- */
+[data-theme="dark"] aside { box-shadow: 1px 0 0 rgba(148, 130, 255, 0.08); }
+
+/* ---------- Light-only Tailwind classes re-mapped for dark ---------- */
+[data-theme="dark"] [class~="bg-white"]:not(button),
+[data-theme="dark"] [class~="bg-white/70"]:not(button),
+[data-theme="dark"] [class~="bg-white/80"]:not(button) {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] [class~="bg-slate-50"],
+[data-theme="dark"] [class~="bg-slate-50/50"],
+[data-theme="dark"] [class~="bg-slate-50/60"],
+[data-theme="dark"] [class~="bg-slate-50/70"],
+[data-theme="dark"] [class~="bg-slate-50/80"] {
+  background-color: rgba(139, 92, 246, 0.07);
+}
+
+[data-theme="dark"] [class~="bg-slate-100"],
+[data-theme="dark"] [class~="bg-slate-100/80"] {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] [class~="focus:bg-white"]:focus {
+  background-color: #100f2c;
+}
+
+[data-theme="dark"] [class~="hover:bg-slate-50"]:hover,
+[data-theme="dark"] [class~="hover:bg-slate-50/50"]:hover,
+[data-theme="dark"] [class~="hover:bg-slate-100"]:hover,
+[data-theme="dark"] [class~="hover:bg-slate-200"]:hover {
+  background-color: rgba(139, 92, 246, 0.14);
+}
+
+[data-theme="dark"] [class~="hover:bg-violet-50"]:hover,
+[data-theme="dark"] [class~="hover:bg-violet-50/60"]:hover,
+[data-theme="dark"] [class~="hover:bg-violet-100"]:hover,
+[data-theme="dark"] [class~="hover:bg-indigo-100"]:hover {
+  background-color: rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="dark"] [class~="hover:bg-rose-50"]:hover,
+[data-theme="dark"] [class~="hover:bg-red-50"]:hover {
+  background-color: rgba(244, 63, 94, 0.14);
+}
+
+[data-theme="dark"] button[class~="bg-slate-900"] {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35);
+}
+[data-theme="dark"] button[class~="bg-slate-900"]:hover:not(:disabled) { filter: brightness(1.12); }
+[data-theme="dark"] button[class~="bg-slate-900"]:disabled {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+  color: #6f6a99;
+}
+
+[data-theme="dark"] [class~="bg-violet-50"],
+[data-theme="dark"] [class~="bg-violet-100"],
+[data-theme="dark"] [class~="bg-violet-50/60"],
+[data-theme="dark"] [class~="bg-violet-50/50"],
+[data-theme="dark"] [class~="bg-violet-50/30"],
+[data-theme="dark"] [class~="bg-purple-100"],
+[data-theme="dark"] [class~="bg-indigo-50"],
+[data-theme="dark"] [class~="bg-indigo-100"] {
+  background-color: rgba(139, 92, 246, 0.15);
+}
+
+[data-theme="dark"] [class~="bg-rose-50"],
+[data-theme="dark"] [class~="bg-red-50"],
+[data-theme="dark"] [class~="bg-red-100"] {
+  background-color: rgba(244, 63, 94, 0.13);
+}
+
+[data-theme="dark"] [class~="bg-emerald-50"],
+[data-theme="dark"] [class~="bg-emerald-100"],
+[data-theme="dark"] [class~="bg-emerald-50/60"],
+[data-theme="dark"] [class~="bg-emerald-50/50"] {
+  background-color: rgba(16, 185, 129, 0.13);
+}
+
+[data-theme="dark"] [class~="bg-amber-50"],
+[data-theme="dark"] [class~="bg-amber-50/60"],
+[data-theme="dark"] [class~="bg-amber-50/50"] {
+  background-color: rgba(245, 158, 11, 0.13);
+}
+
+[data-theme="dark"] [class~="border-slate-100"],
+[data-theme="dark"] [class~="border-slate-200"],
+[data-theme="dark"] [class~="border-slate-200/60"],
+[data-theme="dark"] [class~="border-slate-200/80"] {
+  border-color: rgba(148, 130, 255, 0.16);
+}
+
+[data-theme="dark"] [class~="divide-slate-100"] > * + * { border-color: rgba(148, 130, 255, 0.14); }
+
+[data-theme="dark"] [class~="border-violet-100"],
+[data-theme="dark"] [class~="border-violet-200"] {
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] [class~="border-rose-100"],
+[data-theme="dark"] [class~="border-rose-200"] {
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+[data-theme="dark"] [class~="border-emerald-100"],
+[data-theme="dark"] [class~="border-emerald-200"],
+[data-theme="dark"] [class~="border-emerald-100/60"] {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] [class~="border-amber-100"],
+[data-theme="dark"] [class~="border-amber-200"],
+[data-theme="dark"] [class~="border-amber-100/60"],
+[data-theme="dark"] [class~="border-amber-200/60"] {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] [class~="text-slate-900"],
+[data-theme="dark"] [class~="text-slate-800"] {
+  color: #f1efff;
+}
+
+[data-theme="dark"] [class~="text-slate-700"] {
+  color: #dcd8f7;
+}
+
+[data-theme="dark"] [class~="text-slate-600"] {
+  color: #bdb8e3;
+}
+
+[data-theme="dark"] [class~="text-slate-500"] {
+  color: #a19dc9;
+}
+
+[data-theme="dark"] [class~="text-slate-400"] {
+  color: #8f8ab8;
+}
+
+[data-theme="dark"] [class~="text-violet-600"],
+[data-theme="dark"] [class~="text-violet-700"],
+[data-theme="dark"] [class~="text-violet-800"],
+[data-theme="dark"] [class~="text-violet-900"],
+[data-theme="dark"] [class~="text-purple-600"],
+[data-theme="dark"] [class~="text-purple-700"] {
+  color: #c4b5fd;
+}
+
+[data-theme="dark"] [class~="text-indigo-600"],
+[data-theme="dark"] [class~="text-indigo-700"],
+[data-theme="dark"] [class~="text-brand-indigo"] {
+  color: #b9a6ff;
+}
+
+[data-theme="dark"] [class~="text-rose-500"],
+[data-theme="dark"] [class~="text-rose-600"],
+[data-theme="dark"] [class~="text-rose-700"],
+[data-theme="dark"] [class~="text-red-500"],
+[data-theme="dark"] [class~="text-red-600"] {
+  color: #fda4af;
+}
+
+[data-theme="dark"] [class~="text-emerald-500"],
+[data-theme="dark"] [class~="text-emerald-600"],
+[data-theme="dark"] [class~="text-emerald-700"],
+[data-theme="dark"] [class~="text-emerald-800"],
+[data-theme="dark"] [class~="text-emerald-900"] {
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] [class~="text-amber-600"],
+[data-theme="dark"] [class~="text-amber-700"],
+[data-theme="dark"] [class~="text-amber-800"] {
+  color: #fcd34d;
+}
+
+[data-theme="dark"] .group:hover [class~="group-hover:text-violet-600"],
+[data-theme="dark"] .group:hover [class~="group-hover:text-violet-700"] { color: #ddd0ff; }
+[data-theme="dark"] [class~="placeholder:text-slate-400"]::placeholder { color: #7d78a8; }
